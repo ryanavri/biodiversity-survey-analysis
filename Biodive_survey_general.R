@@ -9,6 +9,11 @@ library(ggplot2)
 library(ggvegan)
 
 ##Load dataset----
+# Download the RData file
+download.file("https://github.com/ryanavri/Biodive-survey/raw/main/input/data.RData", "data.RData")
+
+# Load the RData file
+load("data.RData")
 
 #Analysis of richness and diversity----
 
