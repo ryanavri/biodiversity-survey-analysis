@@ -87,18 +87,18 @@ ggplot(raw_m, aes(x = factor(Scientific.Name, levels = rev(species_abundance$Sci
   coord_flip()
 
 #alternatif fancy plot
-ggplot(raw_m, aes(x = factor(Scientific.Name, levels = rev(species_abundance$Scientific.Name)), fill = Transect)) +
-  geom_bar(width = 0.8, position = position_dodge(width = 0.9)) +
-  labs(x = "Species", y = "Number of Individuals", fill = "Transect") +
-  theme_minimal(base_size = 16) +
-  theme(legend.position = "bottom",
-        axis.text.y = element_text(face = "italic", size = 14),
-        axis.text.x = element_text(size = 14, angle = 45, hjust = 1),
-        axis.title.x = element_text(size = 16, face = "bold"),
-        axis.title.y = element_text(size = 16, face = "bold"),
-        legend.text = element_text(size = 14),
-        legend.title = element_text(size = 16, face = "bold")) +
-  guides(fill = guide_legend(title = "Transect", title.position = "top", title.hjust = 0.5)) +
+ggplot(abundance_table, aes(x = factor(Scientific.Name, levels = rev(sort(unique(Scientific.Name)))), y = abundance, fill = Transect)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8)) +
+  labs(x = "Species", y = "Abundance", fill = "Transect") +
+  facet_wrap(~ Transect, ncol = 2) +
+  scale_fill_viridis_d() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        axis.text.y = element_text(face = "italic"),
+        legend.position = "bottom",
+        legend.box = "horizontal",
+        legend.margin = margin(t = 0, r = 0, b = 0, l = 0),
+        panel.border = element_rect(colour = "black", fill = NA, size = 0.5)) +
   coord_flip()
 
 ###Plot the abundance of dominating species----
