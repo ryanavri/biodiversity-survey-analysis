@@ -1,8 +1,8 @@
-#Biodiversity Survey Analysis
+# Biodiversity Survey Analysis
 
 This is a companion code for the '[Panduan Survei Kehati FFI's IP](https://bookdown.org/ryan_avriandy/ffip_surveikehati/)' project, containing R scripts for visualizing, exploring, and analyzing data from biodiversity surveys. The scripts are designed to provide an overview of species diversity and composition, as well as analyze environmental variables and their potential effects on species diversity and composition
 
-##Data Sources
+## Data Sources
 
 The data used in this project is mockup data created for the purpose of demonstrating the functionality of the scripts. It does not refer to any real data from any organization or team. The data includes information on various surveys and can be found in the 'input' directory.
 
