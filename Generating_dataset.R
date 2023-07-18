@@ -43,3 +43,36 @@ raw.t <- data.frame(
   Transect = sample(c("TS01", "TS02", "TS03", "TS04", "TS05", "TS06","TS07", "TS08", "TS09", "TS10"), n, replace = TRUE, prob = probs_a),
   Scientific.Name = sample(unique(t$species), n, replace = TRUE, prob = probs_b),
   dbh = round(runif(n, min = 5, max = 80),0))
+
+
+# Distance sampling----
+## Generate dataset for primates----
+# Set the number of observations
+n <- 80
+
+# Set the maximum distance
+max_dist <- 30
+
+# Generate a vector of distances
+distances <- seq(0, max_dist, length.out = n)
+
+# Generate detection probabilities based on the assumption
+detection_probs <- exp(-0.1 * distances) + 0.5 * exp(-0.2 * (distances - 15)^2)
+
+# Define the species names
+species_names <- c("Macaca fascicularis", "Trachypithecus auratus", "Presbytis comata", "Hylobates javanicus", "Nycticebus javanicus")
+
+# Define the detection probability multipliers for the last two species
+multipliers <- c(1, 1, 0.5, 0.3, 0.1)  # Adjust the values as desired
+
+# Simulate observed distances with detection probabilities for each transect and species
+simulated_data <- data.frame()
+for (i in 1:10) {
+  transect <- paste0("TS", sprintf("%02d", i))
+  species <- sample(species_names, size = n, replace = TRUE, prob = multipliers)
+  observed_distances <- sample(distances, size = n, replace = TRUE, prob = detection_probs)
+  transect_data <- data.frame(Transect = transect, Species = species, Distance = observed_distances)
+  simulated_data <- rbind(simulated_data, transect_data)
+}
+
+simdat_primate_ds <- simulated_data
